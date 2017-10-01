@@ -1,5 +1,3 @@
-/*eslint no-console: ["error", { allow: ["warn", "error", "log"] }] */
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { login, setLogingSuccess } from '../../actions/loginActions';
@@ -13,7 +11,13 @@ class LoginForm extends Component {
       email: 'admin@example.com',
       password: 'admin'
     };
-    console.log();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { isLoginSuccess } = this.props;
+    if (!isLoginSuccess && nextProps.isLoginSuccess) {
+      this.props.history.push('/');
+    }
   }
 
   render() {
@@ -46,7 +50,9 @@ class LoginForm extends Component {
 
           {isLoginPending && <div>Please Wait...</div>}
           {isLoginSuccess && (
-            <div>Success {(setTimeout(() => this.goHome()), 1)}</div>
+            <div>
+              Logged-in successfully, please wait while we take you to home...
+            </div>
           )}
           {isLoginError && <div>{isLoginError.message}</div>}
         </form>
@@ -88,9 +94,9 @@ LoginForm.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    isLoginPending: state.isLoginPending,
-    isLoginSuccess: state.isLoginSuccess,
-    isLoginError: state.isLoginError
+    isLoginPending: state.reducer.isLoginPending,
+    isLoginSuccess: state.reducer.isLoginSuccess,
+    isLoginError: state.reducer.isLoginError
   };
 };
 

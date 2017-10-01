@@ -21,7 +21,8 @@
     "no-unused-vars": 2,
     "no-undef": 2,
     "indent": ["error", 2, { "SwitchCase": 1 }],
-    "strict": [2, "function"]
+    "strict": [2, "function"],
+    "no-console": "off"
   },
   "parser": "babel-eslint"
 }

@@ -7,7 +7,7 @@ import store from './redux/store';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import LoginForm from './components/LoginForm/LoginForm';
-import { Home } from './components/HomePage/home';
+import Home from './components/HomePage/home';
 
 class App extends React.Component {
   render() {
